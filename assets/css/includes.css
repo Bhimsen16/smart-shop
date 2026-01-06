@@ -3,6 +3,9 @@
   width: 100%;
   background: #f8f9fb;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .navbar-container {
@@ -80,12 +83,6 @@
   font-weight: 500;
 }
 
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
 /* Mobile tweaks */
 @media (max-width: 768px) {
   .nav-right {
@@ -98,21 +95,6 @@
 }
 
 /* ------------------ FOOTER FIX ------------------ */
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1; /* pushes footer to bottom */
-}
-
 .footer {
   background: #f8f9fb;
   color: black;
@@ -196,7 +178,7 @@ main {
   background: white;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  width: 220px;
+  min-width: 220px;
   display: none;
   overflow: hidden;
   z-index: 2000;
