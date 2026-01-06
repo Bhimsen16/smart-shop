@@ -3,14 +3,19 @@
 .admin-layout {
   display: flex;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 .admin-sidebar {
   width: 240px;
-  background: #0f2a6b;
+  background: #2563eb;
   color: white;
   padding: 24px;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .admin-main {
@@ -18,38 +23,29 @@
   display: flex;
   flex-direction: column;
   background: #f5f7fb;
-}
-
-.admin-logo {
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 36px;
-  letter-spacing: 0.5px;
-}
-
-.admin-logo span {
-  color: #93c5fd;
+  overflow-y: auto; /* page scrolls here */
 }
 
 .admin-nav {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
+  flex: 1;
 }
 
 .admin-nav a {
-  color: #dbe4ff;
+  color: white;
   text-decoration: none;
-  font-size: 15px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  transition: 0.2s;
+  font-size: 16px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: background 0.2s;
 }
 
 .admin-nav a:hover,
 .admin-nav a.active {
-  background: #2563eb;
-  color: white;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .admin-content {
@@ -70,7 +66,7 @@
   background: white;
   padding: 24px;
   border-radius: 14px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   text-align: center;
 }
 
@@ -106,7 +102,7 @@
   background: white;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 .admin-table th,
@@ -160,15 +156,15 @@
 
 /* ======= ADD PRODUCT FORM ======== */
 
-.admin-page { 
-  max-width: 600px; 
-  margin: 30px auto; 
+.admin-page {
+  max-width: 600px;
+  margin: 30px auto;
 }
 
-.admin-title { 
-  font-size: 22px; 
-  font-weight: 700; 
-  margin-bottom: 24px; 
+.admin-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
 }
 
 .admin-form label {
@@ -189,15 +185,15 @@
   margin-bottom: 18px;
 }
 
-.admin-form textarea { 
-  resize: vertical; 
-  min-height: 100px; 
+.admin-form textarea {
+  resize: vertical;
+  min-height: 100px;
 }
 
 .admin-form input:focus,
-.admin-form textarea:focus { 
-  outline: none; 
-  border-color: #2563eb; 
+.admin-form textarea:focus {
+  outline: none;
+  border-color: #2563eb;
 }
 
 .admin-form button {
@@ -212,12 +208,14 @@
   transition: 0.2s;
 }
 
-.admin-form button:hover { background: #1e4fcc; }
+.admin-form button:hover {
+  background: #1e4fcc;
+}
 
 /* Image preview */
-#imagePreview { 
-  max-width: 150px; 
-  margin-top: 10px; 
-  border-radius: 10px; 
+#imagePreview {
+  max-width: 150px;
+  margin-top: 10px;
+  border-radius: 10px;
   display: none;
 }

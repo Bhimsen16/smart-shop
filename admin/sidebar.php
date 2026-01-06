@@ -1,8 +1,4 @@
 <aside class="admin-sidebar">
-  <div class="admin-logo">
-    Smart<span>Shop</span>
-  </div>
-
   <nav class="admin-nav">
     <a href="index.php">Dashboard</a>
     <a href="view_products.php">Products</a>
