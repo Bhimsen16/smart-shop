@@ -369,7 +369,7 @@ html {
   transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
   z-index: 900;           /* LOWER than navbar */
-  pointer-events: none;  /* 🔥 THIS IS KEY */
+  pointer-events: none;  /* THIS IS KEY */
 }
 
 .notification.show {

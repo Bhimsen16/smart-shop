@@ -41,6 +41,15 @@
   border-radius: 10px;
   font-weight: 500;
   transition: background 0.2s;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-nav i {
+  width: 20px;
+  text-align: center;
 }
 
 .admin-nav a:hover,
@@ -217,5 +226,39 @@
   max-width: 150px;
   margin-top: 10px;
   border-radius: 10px;
+  display: none;
+}
+
+/* Sidebar top (☰ icon) */
+.sidebar-top {
+  margin-bottom: 24px;
+}
+
+.sidebar-toggle {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Collapsed sidebar */
+.admin-layout.collapsed .admin-sidebar {
+  width: 72px;
+  padding: 24px 12px;
+}
+
+.admin-layout.collapsed .admin-nav a {
+  justify-content: center;
+  padding: 14px;
+  font-size: 0;
+}
+
+.admin-layout.collapsed .admin-nav a::before {
+  font-size: 18px;
+}
+
+/* Hide text smoothly */
+.admin-layout.collapsed .admin-nav a span {
   display: none;
 }

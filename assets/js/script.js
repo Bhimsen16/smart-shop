@@ -189,3 +189,14 @@ function toggleAuthBox() {
 function toggleUserMenu() {
   document.getElementById("userMenu")?.classList.toggle("show");
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  const toggleBtn = document.getElementById('sidebarToggle');
+  const layout = document.querySelector('.admin-layout');
+
+  if (toggleBtn && layout) {
+    toggleBtn.addEventListener('click', function () {
+      layout.classList.toggle('collapsed');
+    });
+  }
+});

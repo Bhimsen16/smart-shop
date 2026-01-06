@@ -5,6 +5,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once __DIR__ . '/../config/db.php';
 
+$currentPage = basename($_SERVER['PHP_SELF']);
+
 // Common globals
 $user_id = $_SESSION['user_id'] ?? null;
 $session_id = session_id();
