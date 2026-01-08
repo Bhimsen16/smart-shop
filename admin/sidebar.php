@@ -18,6 +18,10 @@
       <i class="fa-solid fa-plus"></i><span>Add Product</span>
     </a>
 
+    <a href="import_products.php" class="<?= $currentPage == 'import_products.php' ? 'active' : '' ?>">
+      <i class="fa-solid fa-plus"></i><span>Import Products (CSV)</span>
+    </a>
+
     <a href="users.php" class="<?= $currentPage == 'users.php' ? 'active' : '' ?>">
       <i class="fa-solid fa-users"></i><span>Users</span>
     </a>
