@@ -190,13 +190,22 @@ function toggleUserMenu() {
   document.getElementById("userMenu")?.classList.toggle("show");
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  const toggleBtn = document.getElementById('sidebarToggle');
-  const layout = document.querySelector('.admin-layout');
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleBtn = document.getElementById("sidebarToggle");
+  const layout = document.querySelector(".admin-layout");
 
   if (toggleBtn && layout) {
-    toggleBtn.addEventListener('click', function () {
-      layout.classList.toggle('collapsed');
+    toggleBtn.addEventListener("click", function () {
+      layout.classList.toggle("collapsed");
     });
   }
+});
+
+const csvInput = document.getElementById("csvFile");
+const fileName = document.getElementById("fileName");
+
+csvInput.addEventListener("change", () => {
+  fileName.textContent = csvInput.files.length
+    ? csvInput.files[0].name
+    : "No file selected";
 });

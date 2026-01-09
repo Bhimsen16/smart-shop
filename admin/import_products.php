@@ -1,89 +1,115 @@
 <?php
 require_once '../includes/init.php';
-require_once '../config/db.php';
+require_once 'admin_guard.php';
+require_once '../includes/header.php';
 
-if (!isset($_FILES['csv_file'])) {
-    die('No file uploaded');
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
+
+    $file = fopen($_FILES['csv_file']['tmp_name'], 'r');
+    $header = fgetcsv($file); // skip header
+
+    while (($row = fgetcsv($file)) !== false) {
+
+        [
+          $product_name, $brand, $category, $price, $description, $image,
+          $cpu, $cores_threads, $clock_speed, $cache,
+          $gpu, $ram, $storage,
+          $display, $resolution, $refresh_rate, $anti_glare,
+          $os, $utility, $weight, $warranty,
+          $battery, $charger, $connectivity
+        ] = $row;
+
+        // products
+        $stmt = $conn->prepare(
+          "INSERT INTO products (product_name, brand, category, price, description, image)
+           VALUES (?, ?, ?, ?, ?, ?)"
+        );
+        $stmt->bind_param("sssiss",
+          $product_name, $brand, $category, $price, $description, $image
+        );
+        $stmt->execute();
+        $product_id = $stmt->insert_id;
+
+        // processor
+        $conn->prepare(
+          "INSERT INTO product_processor_specs
+           (product_id, cpu, cores_threads, clock_speed, cache)
+           VALUES (?, ?, ?, ?, ?)"
+        )->bind_param("issss",
+          $product_id, $cpu, $cores_threads, $clock_speed, $cache
+        )->execute();
+
+        // memory
+        $conn->prepare(
+          "INSERT INTO product_memory_specs
+           (product_id, gpu, ram, storage)
+           VALUES (?, ?, ?, ?)"
+        )->bind_param("isss",
+          $product_id, $gpu, $ram, $storage
+        )->execute();
+
+        // display
+        $conn->prepare(
+          "INSERT INTO product_display_specs
+           (product_id, display, resolution, refresh_rate, anti_glare)
+           VALUES (?, ?, ?, ?, ?)"
+        )->bind_param("issss",
+          $product_id, $display, $resolution, $refresh_rate, $anti_glare
+        )->execute();
+
+        // general
+        $conn->prepare(
+          "INSERT INTO product_general_specs
+           (product_id, os, utility, weight, warranty)
+           VALUES (?, ?, ?, ?, ?)"
+        )->bind_param("issss",
+          $product_id, $os, $utility, $weight, $warranty
+        )->execute();
+
+        // power + connectivity
+        $conn->prepare(
+          "INSERT INTO product_power_connectivity_specs
+           (product_id, battery, charger, connectivity)
+           VALUES (?, ?, ?, ?)"
+        )->bind_param("isss",
+          $product_id, $battery, $charger, $connectivity
+        )->execute();
+    }
+
+    fclose($file);
+    $success = "CSV Import Successful. ";
 }
+?>
 
-$file = fopen($_FILES['csv_file']['tmp_name'], 'r');
-$header = fgetcsv($file); // skip header
+<div class="admin-layout">
+  <?php require_once 'sidebar.php'; ?>
 
-//loop rows
-while (($row = fgetcsv($file)) !== false) {
+  <div class="admin-main">
+    <?php require_once '../includes/navbar.php'; ?>
 
-    [
-      $product_name, $brand, $category, $price, $description, $image,
-      $cpu, $cores_threads, $clock_speed, $cache,
-      $gpu, $ram, $storage,
-      $display, $resolution, $refresh_rate, $anti_glare,
-      $os, $utility, $weight, $warranty,
-      $battery, $charger, $connectivity
-    ] = $row;
+    <main class="admin-content">
+      <div class="admin-page">
+        <h2>Import Products via CSV</h2>
 
-    //insert into products
-    $stmt = $conn->prepare(
-  "INSERT INTO products (product_name, brand, category, price, description, image)
-   VALUES (?, ?, ?, ?, ?, ?)"
-);
-$stmt->bind_param(
-  "sssiss",
-  $product_name, $brand, $category, $price, $description, $image
-);
-$stmt->execute();
+        <?php if (!empty($success)): ?>
+          <p style="color: green;"><?= $success ?></p>
+        <?php endif; ?>
 
-$product_id = $stmt->insert_id;
+        <form method="POST" enctype="multipart/form-data" class="admin-form">
+          <label>Upload Products CSV</label>
 
-//insert processor specs
-$conn->prepare(
-  "INSERT INTO product_processor_specs
-   (product_id, cpu, cores_threads, clock_speed, cache)
-   VALUES (?, ?, ?, ?, ?)"
-)->bind_param(
-  "issss",
-  $product_id, $cpu, $cores_threads, $clock_speed, $cache
-)->execute();
+          <div class="file-input-wrap">
+            <input type="file" name="csv_file" id="csvFile" accept=".csv" required hidden>
 
-//insert memory specs
-$conn->prepare(
-  "INSERT INTO product_memory_specs
-   (product_id, gpu, ram, storage)
-   VALUES (?, ?, ?, ?)"
-)->bind_param(
-  "isss",
-  $product_id, $gpu, $ram, $storage
-)->execute();
+            <label for="csvFile" class="file-btn">Choose CSV File</label>
+            <span id="fileName" class="file-name">No file selected</span>
+          </div>
+          
+          <button type="submit">Import CSV</button>
+        </form>
+      </div>
+    </main>
 
-//display specs
-$conn->prepare(
-  "INSERT INTO product_display_specs
-   (product_id, display, resolution, refresh_rate, anti_glare)
-   VALUES (?, ?, ?, ?, ?)"
-)->bind_param(
-  "issss",
-  $product_id, $display, $resolution, $refresh_rate, $anti_glare
-)->execute();
-
-//general specs
-$conn->prepare(
-  "INSERT INTO product_general_specs
-   (product_id, os, utility, weight, warranty)
-   VALUES (?, ?, ?, ?, ?)"
-)->bind_param(
-  "issss",
-  $product_id, $os, $utility, $weight, $warranty
-)->execute();
-
-//connectivity specs
-$conn->prepare(
-  "INSERT INTO product_power_connectivity_specs
-   (product_id, battery, charger, connectivity)
-   VALUES (?, ?, ?, ?)"
-)->bind_param(
-  "isss",
-  $product_id, $battery, $charger, $connectivity
-)->execute();
-}
-fclose($file);
-
-echo "CSV Import Successful.";
+    <?php require_once '../includes/footer.php'; ?>
+  </div>
+</div>
