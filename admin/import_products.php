@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
         );
 
       $stmt->execute();
+      $product_id = $stmt->insert_id;
 
         // memory
         $stmt = $conn->prepare(
@@ -58,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
         );
 
       $stmt->execute();
+      $product_id = $stmt->insert_id;
 
         // display
         $stmt = $conn->prepare(
@@ -71,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
       );
         
       $stmt->execute();
+      $product_id = $stmt->insert_id;
 
         // general
         $stmt = $conn->prepare(
@@ -84,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
       );
       
       $stmt->execute();
+      $product_id = $stmt->insert_id;
 
         // power + connectivity
       $stmt = $conn->prepare(
@@ -97,6 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
       );
       
       $stmt->execute();
+      $product_id = $stmt->insert_id;
     }
 
     fclose($file);
