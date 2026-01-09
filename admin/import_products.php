@@ -24,56 +24,79 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
           "INSERT INTO products (product_name, brand, category, price, description, image)
            VALUES (?, ?, ?, ?, ?, ?)"
         );
+
         $stmt->bind_param("sssiss",
           $product_name, $brand, $category, $price, $description, $image
         );
-        $stmt->execute();
-        $product_id = $stmt->insert_id;
+
+      $stmt->execute();
+      $product_id = $stmt->insert_id;
 
         // processor
-        $conn->prepare(
+        $stmt = $conn->prepare(
           "INSERT INTO product_processor_specs
-           (product_id, cpu, cores_threads, clock_speed, cache)
-           VALUES (?, ?, ?, ?, ?)"
-        )->bind_param("issss",
-          $product_id, $cpu, $cores_threads, $clock_speed, $cache
-        )->execute();
+          (product_id, cpu, cores_threads, clock_speed, cache)
+          VALUES (?, ?, ?, ?, ?)"
+        );
+
+        $stmt->bind_param("issss",
+          $product_id, $cpu,$cores_threads,
+          $clock_speed, $cache
+        );
+
+      $stmt->execute();
 
         // memory
-        $conn->prepare(
+        $stmt = $conn->prepare(
           "INSERT INTO product_memory_specs
-           (product_id, gpu, ram, storage)
-           VALUES (?, ?, ?, ?)"
-        )->bind_param("isss",
-          $product_id, $gpu, $ram, $storage
-        )->execute();
+          (product_id, gpu, ram, storage)
+          VALUES (?, ?, ?, ?)"
+        );
+
+        $stmt->bind_param("isss",
+          $product_id,$gpu,$ram,$storage
+        );
+
+      $stmt->execute();
 
         // display
-        $conn->prepare(
+        $stmt = $conn->prepare(
           "INSERT INTO product_display_specs
            (product_id, display, resolution, refresh_rate, anti_glare)
            VALUES (?, ?, ?, ?, ?)"
-        )->bind_param("issss",
+        );
+
+        $stmt->bind_param("issss",
           $product_id, $display, $resolution, $refresh_rate, $anti_glare
-        )->execute();
+      );
+        
+      $stmt->execute();
 
         // general
-        $conn->prepare(
+        $stmt = $conn->prepare(
           "INSERT INTO product_general_specs
            (product_id, os, utility, weight, warranty)
            VALUES (?, ?, ?, ?, ?)"
-        )->bind_param("issss",
+        );
+
+        $stmt->bind_param("issss",
           $product_id, $os, $utility, $weight, $warranty
-        )->execute();
+      );
+      
+      $stmt->execute();
 
         // power + connectivity
-        $conn->prepare(
+      $stmt = $conn->prepare(
           "INSERT INTO product_power_connectivity_specs
            (product_id, battery, charger, connectivity)
            VALUES (?, ?, ?, ?)"
-        )->bind_param("isss",
+        );
+        
+        $stmt->bind_param("isss",
           $product_id, $battery, $charger, $connectivity
-        )->execute();
+      );
+      
+      $stmt->execute();
     }
 
     fclose($file);
@@ -104,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
             <label for="csvFile" class="file-btn">Choose CSV File</label>
             <span id="fileName" class="file-name">No file selected</span>
           </div>
-          
+
           <button type="submit">Import CSV</button>
         </form>
       </div>
