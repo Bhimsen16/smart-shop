@@ -89,55 +89,137 @@ $product = $conn->query(
             <div class="product-specs">
                 <h3>Specifications</h3>
 
-                <?php if ($processor): ?>
-                    <h4>Processor</h4>
-                    <ul>
-                        <li>CPU: <?= htmlspecialchars($processor['cpu']) ?></li>
-                        <li>Cores/Threads: <?= htmlspecialchars(preg_replace('/(\d+\s*cores)(\s+\d+\s*threads)/i', '$1, $2', $processor['cores_threads'])) ?>
-                        <li>Clock Speed: <?= htmlspecialchars(preg_replace('/(\d+\.?\d*GHz\s*base)(\s+\d+\.?\d*GHz\s*boost)/i', '$1, $2', $processor['clock_speed'])) ?>
-                        <li>Cache: <?= htmlspecialchars($processor['cache']) ?></li>
-                    </ul>
-                <?php endif; ?>
+                <div class="spec-grid">
+                    <div class="spec-block">
+                        <h4 class="spec-title">Processor</h4>
+                        <div class="spec-card">
+                            <?php if ($processor): ?>
+                                <table class="spec-table">
+                                    <tr>
+                                        <td>CPU</td>
+                                        <td><?= htmlspecialchars($processor['cpu']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cores / Threads</td>
+                                        <td><?= htmlspecialchars(preg_replace('/(\d+\s*cores)(\s+\d+\s*threads)/i', '$1, $2', $processor['cores_threads'])) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Clock Speed</td>
+                                        <td><?= htmlspecialchars(preg_replace('/(\d+\.?\d*GHz\s*base)(\s+\d+\.?\d*GHz\s*boost)/i', '$1, $2', $processor['clock_speed'])) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cache</td>
+                                        <td><?= htmlspecialchars($processor['cache']) ?></td>
+                                    </tr>
+                                </table>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
 
-                <?php if ($memory): ?>
-                    <h4>Memory</h4>
-                    <ul>
-                        <li>GPU: <?= htmlspecialchars($memory['gpu']) ?></li>
-                        <li>RAM: <?= htmlspecialchars(preg_replace('/(\d+GB\s*\w*)(\s*\d+MHz)/i', '$1, $2', $memory['ram'])) ?>
-                        <li>Storage: <?= htmlspecialchars($memory['storage']) ?></li>
-                    </ul>
-                <?php endif; ?>
+                <div class="spec-grid">
+                    <div class="spec-block">
+                        <h4 class="spec-title">Memory</h4>
+                        <div class="spec-card">
+                            <?php if ($memory): ?>
+                                <table class="spec-table">
+                                    <tr>
+                                        <td>GPU</td>
+                                        <td><?= htmlspecialchars($memory['gpu']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>RAM</td>
+                                        <td><?= htmlspecialchars(preg_replace('/(\d+GB\s*\w*)(\s*\d+MHz)/i', '$1, $2', $memory['ram'])) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Storage</td>
+                                        <td><?= htmlspecialchars($memory['storage']) ?></td>
+                                    </tr>
+                                </table>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
 
-                <?php if ($display): ?>
-                    <h4>Display</h4>
-                    <ul>
-                        <li>Display: <?= htmlspecialchars($display['display']) ?></li>
-                        <li>Resolution: <?= htmlspecialchars($display['resolution']) ?></li>
-                        <li>Refresh Rate: <?= htmlspecialchars($display['refresh_rate']) ?></li>
-                        <li>Anti-Glare: <?= htmlspecialchars($display['anti_glare']) ?></li>
-                    </ul>
-                <?php endif; ?>
+                <div class="spec-grid">
+                    <div class="spec-block">
+                        <h4 class="spec-title">Display</h4>
+                        <div class="spec-card">
+                            <?php if ($display): ?>
+                                <table class="spec-table">
+                                    <tr>
+                                        <td>Display</td>
+                                        <td><?= htmlspecialchars($display['display']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Resolution</td>
+                                        <td><?= htmlspecialchars($display['resolution']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Refresh Rate</td>
+                                        <td><?= htmlspecialchars($display['refresh_rate']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Anti-Glare</td>
+                                        <td><?= htmlspecialchars($display['anti_glare']) ?></td>
+                                    </tr>
+                                </table>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
 
-                <?php if ($general): ?>
-                    <h4>General</h4>
-                    <ul>
-                        <li>OS: <?= htmlspecialchars($general['os']) ?></li>
-                        <li>Utility: <?= htmlspecialchars($general['utility']) ?></li>
-                        <li>Weight: <?= htmlspecialchars($general['weight']) ?></li>
-                        <li>Warranty: <?= htmlspecialchars($general['warranty']) ?></li>
-                    </ul>
-                <?php endif; ?>
+                <div class="spec-grid">
+                    <div class="spec-block">
+                        <h4 class="spec-title">General</h4>
+                        <div class="spec-card">
+                            <?php if ($general): ?>
+                                <table class="spec-table">
+                                    <tr>
+                                        <td>OS</td>
+                                        <td><?= htmlspecialchars($general['os']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Utility</td>
+                                        <td><?= htmlspecialchars($general['utility']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td><?= htmlspecialchars($general['weight']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Warranty</td>
+                                        <td><?= htmlspecialchars($general['warranty']) ?></td>
+                                    </tr>
+                                </table>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
 
-                <?php if ($power): ?>
-                    <h4>Power & Connectivity</h4>
-                    <ul>
-                        <li>Battery: <?= htmlspecialchars($power['battery']) ?></li>
-                        <li>Charger: <?= htmlspecialchars($power['charger']) ?></li>
-                        <li>Connectivity:
-                            <?= htmlspecialchars(implode(', ', preg_split('/\s{2,}|\s(?=[A-Z])/u', $power['connectivity']))) ?>
-                        </li>
-                    </ul>
-                <?php endif; ?>
+                <div class="spec-grid">
+                    <div class="spec-block">
+                        <h4 class="spec-title">Power & Connectivity</h4>
+                        <div class="spec-card">
+                            <?php if ($power): ?>
+                                <table class="spec-table">
+                                    <tr>
+                                        <td>Battery</td>
+                                        <td><?= htmlspecialchars($power['battery']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Charger</td>
+                                        <td><?= htmlspecialchars($power['charger']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Connectivity</td>
+                                        <td><?= htmlspecialchars(implode(', ', preg_split('/\s{2,}|\s(?=[A-Z])/u', $power['connectivity']))) ?></td>
+                                    </tr>
+                                </table>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         <?php else: ?>
