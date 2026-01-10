@@ -10,7 +10,7 @@ $registered  = isset($_GET['registered']);
 
 $result = $conn->query("SELECT * FROM products");
 if (!$result) {
-    die("Database query failed: " . $conn->error);
+  die("Database query failed: " . $conn->error);
 }
 ?>
 
@@ -59,12 +59,12 @@ if (!$result) {
 </div>
 
 <?php if ($login_error || $show_register || $registered): ?>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const authBox = document.getElementById('authBox');
-    if (authBox) authBox.classList.add('show');
-  });
-</script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const authBox = document.getElementById('authBox');
+      if (authBox) authBox.classList.add('show');
+    });
+  </script>
 <?php endif; ?>
 
 <div class="homepage-container">
@@ -149,18 +149,27 @@ if (!$result) {
         <div class="product-card">
           <img src="../uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Product">
 
-          <h3><?php echo htmlspecialchars($row['product_name']); ?></h3>
+          <!-- Product Name clickable -->
+          <h3>
+            <a href="product_details.php?id=<?php echo $row['id']; ?>">
+              <?php echo htmlspecialchars($row['product_name']); ?>
+            </a>
+          </h3>
 
-          <p class="spec-text"><?php echo htmlspecialchars($row['short_specs']); ?></p>
+          <!-- Mini Specs List -->
+          <ul class="mini-specs">
+            <?php
+            $specs = explode(',', $row['short_specs']); // assuming CSV of 4–5 key specs
+            foreach ($specs as $spec) {
+              echo '<li>' . htmlspecialchars(trim($spec)) . '</li>';
+            }
+            ?>
+          </ul>
 
           <p class="price">Rs. <?php echo number_format($row['price']); ?></p>
-
-          <div class="product-actions">
-            <a href="product_details.php?id=<?php echo $row['id']; ?>" class="btn-view">View</a>
-            <button onclick="addToCart(<?php echo $row['id']; ?>)" class="btn-add">Add</button>
-          </div>
         </div>
       <?php } ?>
+
     </div>
   </section>
 </div>
