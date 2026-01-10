@@ -66,8 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
       // memory insert
       $stmt = $conn->prepare(
         "INSERT INTO product_memory_specs
-          (product_id, gpu, ram, storage)
-          VALUES (?, ?, ?, ?)"
+          (product_id, gpu, gpu_tdp, ram, storage)
+          VALUES (?, ?, ?, ?, ?)"
       );
 
       $stmt->bind_param("isss",

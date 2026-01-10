@@ -35,9 +35,34 @@ if (!$product_id) {
     exit;
 }
 
-$query = "SELECT * FROM products WHERE id = $product_id";
-$result = mysqli_query($conn, $query);
-$product = mysqli_num_rows($result) ? mysqli_fetch_assoc($result) : null;
+// Processor specs
+$processor = $conn->query(
+    "SELECT * FROM product_processor_specs WHERE product_id = $product_id"
+)->fetch_assoc();
+
+// Memory specs
+$memory = $conn->query(
+    "SELECT * FROM product_memory_specs WHERE product_id = $product_id"
+)->fetch_assoc();
+
+// Display specs
+$display = $conn->query(
+    "SELECT * FROM product_display_specs WHERE product_id = $product_id"
+)->fetch_assoc();
+
+// General specs
+$general = $conn->query(
+    "SELECT * FROM product_general_specs WHERE product_id = $product_id"
+)->fetch_assoc();
+
+// Power & Connectivity specs
+$power = $conn->query(
+    "SELECT * FROM product_power_connectivity_specs WHERE product_id = $product_id"
+)->fetch_assoc();
+
+$product = $conn->query(
+    "SELECT * FROM products WHERE id = $product_id"
+)->fetch_assoc();
 ?>
 
 <main>
@@ -59,6 +84,62 @@ $product = mysqli_num_rows($result) ? mysqli_fetch_assoc($result) : null;
                     <button class="btn-add" onclick="addToCart(<?php echo $product['id']; ?>)">Add to Cart</button>
                 </div>
             </div>
+
+            <!-- Product Specs Section -->
+            <div class="product-specs">
+                <h3>Specifications</h3>
+
+                <?php if ($processor): ?>
+                    <h4>Processor</h4>
+                    <ul>
+                        <li>CPU: <?= htmlspecialchars($processor['cpu']) ?></li>
+                        <li>Cores/Threads: <?= htmlspecialchars(preg_replace('/(\d+\s*cores)(\s+\d+\s*threads)/i', '$1, $2', $processor['cores_threads'])) ?>
+                        <li>Clock Speed: <?= htmlspecialchars(preg_replace('/(\d+\.?\d*GHz\s*base)(\s+\d+\.?\d*GHz\s*boost)/i', '$1, $2', $processor['clock_speed'])) ?>
+                        <li>Cache: <?= htmlspecialchars($processor['cache']) ?></li>
+                    </ul>
+                <?php endif; ?>
+
+                <?php if ($memory): ?>
+                    <h4>Memory</h4>
+                    <ul>
+                        <li>GPU: <?= htmlspecialchars($memory['gpu']) ?></li>
+                        <li>RAM: <?= htmlspecialchars(preg_replace('/(\d+GB\s*\w*)(\s*\d+MHz)/i', '$1, $2', $memory['ram'])) ?>
+                        <li>Storage: <?= htmlspecialchars($memory['storage']) ?></li>
+                    </ul>
+                <?php endif; ?>
+
+                <?php if ($display): ?>
+                    <h4>Display</h4>
+                    <ul>
+                        <li>Display: <?= htmlspecialchars($display['display']) ?></li>
+                        <li>Resolution: <?= htmlspecialchars($display['resolution']) ?></li>
+                        <li>Refresh Rate: <?= htmlspecialchars($display['refresh_rate']) ?></li>
+                        <li>Anti-Glare: <?= htmlspecialchars($display['anti_glare']) ?></li>
+                    </ul>
+                <?php endif; ?>
+
+                <?php if ($general): ?>
+                    <h4>General</h4>
+                    <ul>
+                        <li>OS: <?= htmlspecialchars($general['os']) ?></li>
+                        <li>Utility: <?= htmlspecialchars($general['utility']) ?></li>
+                        <li>Weight: <?= htmlspecialchars($general['weight']) ?></li>
+                        <li>Warranty: <?= htmlspecialchars($general['warranty']) ?></li>
+                    </ul>
+                <?php endif; ?>
+
+                <?php if ($power): ?>
+                    <h4>Power & Connectivity</h4>
+                    <ul>
+                        <li>Battery: <?= htmlspecialchars($power['battery']) ?></li>
+                        <li>Charger: <?= htmlspecialchars($power['charger']) ?></li>
+                        <li>Connectivity:
+                            <?= htmlspecialchars(implode(', ', preg_split('/\s{2,}|\s(?=[A-Z])/u', $power['connectivity']))) ?>
+                        </li>
+                    </ul>
+                <?php endif; ?>
+            </div>
+
         <?php else: ?>
             <div class="alert">Product not found!</div>
         <?php endif; ?>
