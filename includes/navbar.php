@@ -35,7 +35,7 @@ $avatar_letter = $username !== ''
       <?php if ($role === 'admin'): ?>
         <a class="nav-item" href="../admin/index.php">
           <i class="fa-solid fa-user-shield"></i>
-          <span>Admin</span>
+          <span class="nav-text">Admin</span>
         </a>
       <?php endif; ?>
 
