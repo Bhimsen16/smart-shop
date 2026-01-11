@@ -147,7 +147,11 @@ if (!$result) {
 
       <?php while ($row = $result->fetch_assoc()) { ?>
         <div class="product-card">
-          <img src="../uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Product">
+
+          <!-- Image clickable -->
+          <a href="product_details.php?id=<?php echo $row['id']; ?>">
+            <img src="../uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Product">
+          </a>
 
           <!-- Product Name clickable -->
           <h3>
@@ -155,16 +159,6 @@ if (!$result) {
               <?php echo htmlspecialchars($row['product_name']); ?>
             </a>
           </h3>
-
-          <!-- Mini Specs List -->
-          <ul class="mini-specs">
-            <?php
-            $specs = explode(',', $row['short_specs']); // assuming CSV of 4–5 key specs
-            foreach ($specs as $spec) {
-              echo '<li>' . htmlspecialchars(trim($spec)) . '</li>';
-            }
-            ?>
-          </ul>
 
           <p class="price">Rs. <?php echo number_format($row['price']); ?></p>
         </div>
