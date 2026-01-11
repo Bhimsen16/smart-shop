@@ -17,6 +17,13 @@ $avatar_letter = $username !== ''
     </a>
 
     <div class="nav-right">
+
+      <!-- Products button -->
+      <a class="nav-item" href="../user/products.php">
+        <i class="fa-solid fa-laptop"></i>
+        <span class="nav-text">Laptops</span>
+      </a>
+      
       <a class="nav-item" href="../user/cart.php">
         <span class="cart-icon-wrap">
           <i class="fa-solid fa-cart-shopping"></i>
