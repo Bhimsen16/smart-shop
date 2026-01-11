@@ -20,13 +20,13 @@ if (!$result) {
         <div class="product-card">
 
             <!-- Image clickable -->
-            <a href="product_details.php?id=<?php echo $row['id']; ?>" class="product-img">
-                <img src="../uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Product">
+            <a href="product_details.php?id=<?php echo $row['id']; ?>" class="product-image">
+                <img src="../uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="<?= htmlspecialchars($row['product_name']) ?>">
             </a>
 
             <!-- Info -->
             <div class="product-info">
-                <h4>
+                <h4 class="product-title">
                     <a href="product_details.php?id=<?php echo $row['id']; ?>">
                         <?php echo htmlspecialchars($row['product_name']); ?>
                     </a>

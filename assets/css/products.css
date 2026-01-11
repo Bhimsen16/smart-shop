@@ -2,61 +2,103 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px; /* space between cards */
-  justify-content: center; /* center rows */
+  justify-content: space-between; /* normal flow, not centered */
 }
 
 .product-card {
   display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start; /* align info top with image */
   width: 48%; /* 2 cards per row with small gap */
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 10px;
+  padding: 12px;
   box-sizing: border-box;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: #fff;
 }
 
 .product-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.product-img img {
-  width: 150px; /* fixed image width */
+.product-image {
+  flex-shrink: 0;
+  width: 150px;
   height: auto;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+.product-image img {
+  width: 100%;
+  display: block;
   border-radius: 6px;
 }
 
 .product-info {
   flex: 1;
-  margin-left: 15px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.product-info h4 {
-  margin: 0 0 5px 0;
+.product-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
 }
 
-.product-info .price {
-  font-weight: bold;
-  margin: 5px 0;
+.price {
+  font-weight: 700;
+  color: #2563eb;
+  margin: 4px 0;
 }
 
 .product-info .listing-specs {
   padding-left: 20px;
-  margin: 5px 0;
+  margin: 10px 0;
+  max-height: 180px; /* optional scrollable or clipped */
+  overflow: hidden;
 }
 
-.product-info .view-link {
+.listing-specs {
+  padding-left: 20px;
+  margin: 6px 0;
+}
+
+.listing-specs li {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.view-link {
   color: #007bff;
   text-decoration: none;
   font-size: 0.9rem;
+  margin-top: auto;
 }
 
-.product-info .view-link:hover {
+.view-link:hover {
   text-decoration: underline;
 }
 
 /* Responsive: 1 card per row on small screens */
+/* Responsive: 1 card per row on small screens */
 @media (max-width: 768px) {
   .product-card {
     width: 100%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .product-info {
+    margin-left: 0;
+    align-items: center;
+  }
+  .listing-specs {
+    padding-left: 0;
   }
 }

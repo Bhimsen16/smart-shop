@@ -78,7 +78,7 @@ $product = $conn->query(
                 <div class="product-info">
                     <h2 class="product-title"><?php echo htmlspecialchars($product['product_name']); ?></h2>
                     <h5 class="product-brand">Brand: <?php echo htmlspecialchars($product['brand']); ?></h5>
-                    <h3 class="product-price">Rs. <?php echo number_format($product['price']); ?></h3>
+                    <p class="price">Rs. <?php echo number_format($product['price']); ?></p>
                     <p class="product-description"><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
 
                     <button class="btn-add" onclick="addToCart(<?php echo $product['id']; ?>)">Add to Cart</button>
