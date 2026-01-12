@@ -17,9 +17,12 @@ html, body {
 }
 
 main {
-  flex: 1;
+  flex: 1; /* pushes footer down */
 }
 
+footer { 
+    margin-top: auto; /* sticks footer to bottom */ 
+}
 
 /* Main container */
 .homepage-container{
@@ -206,19 +209,19 @@ html {
     margin-top:20px;
 }
 
-.section-header{
+.featured-section .section-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-bottom:18px;
 }
 
-.section-header h2{
+.featured-section .section-header h2{
     font-size:26px;
     font-weight:800;
 }
 
-.section-header select{
+.featured-section .section-header select{
     padding:10px 14px;
     border-radius:10px;
     border:1px solid #ccc;
@@ -226,14 +229,14 @@ html {
 }
 
 /* PRODUCT GRID */
-.product-grid{
+.featured-section .product-grid{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:repeat(4, 1fr);
     gap:24px;
 }
 
 /* PRODUCT CARD */
-.product-card{
+.featured-section .product-card{
     background:white;
     padding:18px;
     border-radius:14px;
@@ -245,44 +248,41 @@ html {
 }
 
 /* PRODUCT IMAGE */
-.product-card img{
+.featured-section .product-card img{
     width:100%;
     height:180px;
     object-fit:contain;
     margin-bottom:14px;
-}
-
-.product-card img {
     transition: transform 0.3s ease;
 }
 
-.product-card img:hover {
+.featured-section .product-card img:hover {
     transform: scale(1.08);
 }
 
 /* PRODUCT NAME */
-.product-card h3{
+.featured-section .product-card h3{
     font-size:17px;
     font-weight:700;
     margin-bottom:6px;
 }
 
 /* SPEC TEXT */
-.spec-text{
+.featured-section .spec-text{
     font-size:14px;
     color:#666;
     margin-bottom:8px;
 }
 
 /* PRICE */
-.price{
+.featured-section .price{
     font-size:18px;
     font-weight:800;
     color:#2563eb;
 }
 
 /* ACTION BUTTONS */
-.product-actions{
+.featured-section .product-actions{
     margin-top:14px;
     display:flex;
     justify-content:space-between;
@@ -332,13 +332,13 @@ html {
 }
 
 @media (max-width: 768px){
-    .product-grid{
+    .featured-section. product-grid{
         grid-template-columns:repeat(2, 1fr);
     }
 }
 
 @media (max-width: 576px){
-    .product-grid{
+    .featured-section .product-grid{
         grid-template-columns:1fr;
     }
     .categories-section{

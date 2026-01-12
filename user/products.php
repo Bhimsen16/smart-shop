@@ -45,10 +45,6 @@ if (!$result) {
                     <?php endforeach; ?>
                 </ul>
 
-                <a href="product_details.php?id=<?php echo $row['id']; ?>" class="view-link">
-                    View details →
-                </a>
-
             </div>
         </div>
     <?php endwhile; ?>
