@@ -166,7 +166,7 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .spec-grid {
+  .product-detail-container .spec-grid {
     grid-template-columns: 1fr;
   }
 }

@@ -332,7 +332,7 @@ html {
 }
 
 @media (max-width: 768px){
-    .featured-section. product-grid{
+    .featured-section .product-grid{
         grid-template-columns:repeat(2, 1fr);
     }
 }
