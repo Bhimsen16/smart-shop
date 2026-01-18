@@ -87,6 +87,17 @@ if (empty($images) && !empty($product['image'])) {
                     <img id="mainImage" src="../uploads/<?php echo htmlspecialchars($images[0]); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
                 </div>
 
+                <!-- Thumbnail Row -->
+                <div class="thumbnail-row">
+                    <?php foreach ($images as $index => $img): ?>
+                        <img
+                            class="thumb <?= $index === 0 ? 'active' : '' ?>"
+                            src="../uploads/<?= htmlspecialchars($img) ?>"
+                            data-index="<?= $index ?>"
+                            alt="<?= htmlspecialchars($product['product_name']) ?> thumbnail">
+                    <?php endforeach; ?>
+                </div>
+
                 <!-- Product Info -->
                 <div class="product-info">
                     <h2 class="product-title"><?php echo htmlspecialchars($product['product_name']); ?></h2>
