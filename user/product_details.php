@@ -63,6 +63,19 @@ $power = $conn->query(
 $product = $conn->query(
     "SELECT * FROM products WHERE id = $product_id"
 )->fetch_assoc();
+
+$images = explode('|', $product['product_images']);
+$images = array_filter($images); // safety
+
+if (!empty($product['product_images'])) {
+    $images = explode('|', $product['product_images']);
+    $images = array_filter($images); // safety
+}
+
+// fallback if gallery empty
+if (empty($images) && !empty($product['image'])) {
+    $images[] = $product['image'];
+}
 ?>
 
 <main>
@@ -71,7 +84,7 @@ $product = $conn->query(
             <div class="product-detail-container">
                 <!-- Product Image -->
                 <div class="product-image">
-                    <img src="../uploads/<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
+                    <img id="mainImage" src="../uploads/<?php echo htmlspecialchars($images[0]); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
                 </div>
 
                 <!-- Product Info -->
