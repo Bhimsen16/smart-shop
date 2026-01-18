@@ -16,7 +16,7 @@
   align-items: center;
 }
 
-.product-image img {
+.product-detail-container .product-image img {
   width: 100%;
   max-width: 450px;
   border-radius: 14px;
@@ -24,7 +24,7 @@
   transition: transform 0.3s ease;
 }
 
-.product-image img:hover {
+.product-detail-container .product-image img:hover {
   transform: scale(1.05);
 }
 
@@ -36,7 +36,7 @@
   gap: 14px;
 }
 
-.product-title {
+.product-detail-container .product-title {
   font-size: 28px;
   font-weight: 800;
   margin-bottom: 6px;
@@ -95,7 +95,7 @@
     text-align: center;
     gap: 30px;
   }
-  .product-info {
+  .product-detail-container .product-info {
     align-items: center;
   }
 }
