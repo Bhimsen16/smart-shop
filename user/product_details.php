@@ -64,12 +64,14 @@ $product = $conn->query(
     "SELECT * FROM products WHERE id = $product_id"
 )->fetch_assoc();
 
-$images = explode('|', $product['product_images']);
-$images = array_filter($images); // safety
+$images = [];
 
 if (!empty($product['product_images'])) {
-    $images = explode('|', $product['product_images']);
-    $images = array_filter($images); // safety
+    $decoded = json_decode($product['product_images'], true);
+
+    if (is_array($decoded)) {
+        $images = $decoded;
+    }
 }
 
 // fallback if gallery empty
@@ -84,25 +86,34 @@ if (empty($images) && !empty($product['image'])) {
             <div class="product-detail-container">
                 <!-- Product Image -->
                 <div class="product-image">
-                    <img id="mainImage" src="../uploads/<?php echo htmlspecialchars($images[0]); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
-                </div>
 
-                <!-- Thumbnail Row -->
-                <div class="thumbnail-row">
-                    <?php foreach ($images as $index => $img): ?>
-                        <img
-                            class="thumb <?= $index === 0 ? 'active' : '' ?>"
-                            src="../uploads/<?= htmlspecialchars($img) ?>"
-                            data-index="<?= $index ?>"
-                            alt="<?= htmlspecialchars($product['product_name']) ?> thumbnail">
-                    <?php endforeach; ?>
+                    <div class="main-image-wrapper">
+                        <button class="img-arrow left">&#10094;</button>
+
+                        <img id="mainImage"
+                            src="../uploads/<?php echo htmlspecialchars($images[0]); ?>"
+                            alt="<?php echo htmlspecialchars($product['product_name']); ?>">
+
+                        <button class="img-arrow right">&#10095;</button>
+                    </div>
+
+                    <!-- Thumbnail Row -->
+                    <div class="thumbnail-row">
+                        <?php foreach ($images as $index => $img): ?>
+                            <img
+                                class="thumb <?= $index === 0 ? 'active' : '' ?>"
+                                src="../uploads/<?= htmlspecialchars($img) ?>"
+                                data-index="<?= $index ?>"
+                                alt="<?= htmlspecialchars($product['product_name']) ?> thumbnail">
+                        <?php endforeach; ?>
+                    </div>
                 </div>
 
                 <!-- Product Info -->
                 <div class="product-info">
                     <h2 class="product-title"><?php echo htmlspecialchars($product['product_name']); ?></h2>
                     <h5 class="product-brand">Brand: <?php echo htmlspecialchars($product['brand']); ?></h5>
-                    <p class="price">Rs. <?php echo number_format($product['price']); ?></p>
+                    <p class="product-price">Rs. <?php echo number_format($product['price']); ?></p>
                     <p class="product-description"><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
 
                     <button class="btn-add" onclick="addToCart(<?php echo $product['id']; ?>)">Add to Cart</button>
