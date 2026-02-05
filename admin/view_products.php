@@ -46,6 +46,9 @@ $result = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
                                     <a href="delete_product.php?id=<?= $row['id'] ?>"
                                         onclick="return confirm('Delete this product?')"
                                         class="btn-delete">Delete</a>
+                                    <a href="manage_images.php?id=<?= $row['id'] ?>" class="btn-images">
+                                        Manage Images
+                                    </a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>
@@ -53,7 +56,7 @@ $result = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
                 </table>
             </div>
         </main>
-        
+
         <?php require_once '../includes/footer.php'; ?>
     </div>
 </div>
