@@ -17,3 +17,12 @@ node_modules/
 
 # PHP cache (if any)
 *.cache
+
+# Ignore all uploaded images
+/uploads/*
+
+# Ignore CSV files used for import
+/import_csvs/*
+
+# Ignore PHP session files
+/sessions/*
