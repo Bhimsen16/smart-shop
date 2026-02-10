@@ -152,11 +152,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
     <?php require_once '../includes/navbar.php'; ?>
 
     <main class="admin-content">
-      <div class="admin-page">
-        <h2>Import Products via CSV</h2>
+      <div class="admin-page admin-form-page">
+        <h2 class="admin-title">Import Products via CSV</h2>
 
         <?php if (!empty($success)): ?>
-          <p style="color: green;"><?= $success ?></p>
+          <p class="admin-success"><?= $success ?></p>
         <?php endif; ?>
 
         <form method="POST" enctype="multipart/form-data" class="admin-form">
