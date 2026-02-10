@@ -1,3 +1,22 @@
+/* ===== ADMIN BASE ===== */
+
+.admin-content {
+  padding: 40px;
+  background: #f5f7fb;
+  min-height: calc(100vh - 60px);
+}
+
+.admin-page {
+  width: 100%;
+}
+
+.admin-title {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: #111827;
+}
+
 /* ================= ADMIN LAYOUT ================= */
 
 .admin-layout {
@@ -92,111 +111,110 @@
   font-weight: 500;
 }
 
-/* ----------------- Products List ----------------- */
-.admin-page {
-  margin: 30px auto;
-  width: 90%;
-  max-width: 1200px;
+/* ===== VIEW PRODUCTS ===== */
+
+.admin-products {
+  max-width: 880px;
+  margin: 0 auto;
 }
 
-.admin-title {
-  font-size: 28px;
-  font-weight: 800;
-  margin-bottom: 20px;
-}
-
-.admin-table {
+.admin-products .admin-table {
   width: 100%;
-  border-collapse: collapse;
   background: white;
-  border-radius: 12px;
+  border-radius: 14px;
+  border-collapse: collapse;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  margin-top: 10px;
 }
 
-.admin-table th,
-.admin-table td {
-  padding: 14px 16px;
+.admin-products th,
+.admin-products td {
+  padding: 18px 20px;
+  font-size: 15px;
   text-align: left;
-  font-size: 14px;
+  vertical-align: middle;
 }
 
-.admin-table thead {
+.admin-products thead {
   background: #2563eb;
   color: white;
 }
 
-.admin-table tbody tr {
-  border-bottom: 1px solid #eee;
+.admin-products tbody tr {
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.admin-table tbody tr:hover {
-  background: #f8fafc;
+.admin-products tbody tr:hover {
+  background: #f9fafb;
 }
 
-.table-img {
-  width: 60px;
-  height: 45px;
+.admin-products .table-img {
+  width: 80px;
+  height: 55px;
   object-fit: contain;
+  background: #f3f4f6;
+  border-radius: 8px;
 }
 
-.actions {
+/* Actions */
+.admin-products .actions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.btn-edit {
-  padding: 6px 12px;
+.admin-products .actions a {
+  padding: 7px 14px;
+  font-size: 13px;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.admin-products .btn-edit {
   background: #22c55e;
-  color: white;
-  border-radius: 8px;
-  font-size: 13px;
-  text-decoration: none;
 }
 
-.btn-delete {
-  padding: 6px 12px;
+.admin-products .btn-delete {
   background: #ef4444;
-  color: white;
-  border-radius: 8px;
-  font-size: 13px;
-  text-decoration: none;
 }
 
-/* ======= ADD PRODUCT FORM ======== */
-
-.admin-page {
-  max-width: 600px;
-  margin: 30px auto;
+.admin-products .btn-images {
+  background: #2563eb;
 }
 
-.admin-title {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 24px;
+/* ===== ADD / EDIT PRODUCT FORM ===== */
+
+.admin-form-page {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.admin-form {
+  background: white;
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .admin-form label {
+  display: block;
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 6px;
-  display: block;
-  color: #333;
+  color: #374151;
 }
 
 .admin-form input,
 .admin-form textarea {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
+  font-size: 15px;
   border-radius: 10px;
-  border: 1px solid #ddd;
-  font-size: 14px;
+  border: 1px solid #e5e7eb;
   margin-bottom: 18px;
-}
-
-.admin-form textarea {
-  resize: vertical;
-  min-height: 100px;
 }
 
 .admin-form input:focus,
@@ -205,16 +223,21 @@
   border-color: #2563eb;
 }
 
+.admin-form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
 .admin-form button {
   width: 100%;
-  padding: 14px;
+  padding: 15px;
   background: #2563eb;
   color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: 0.2s;
 }
 
 .admin-form button:hover {
@@ -223,8 +246,8 @@
 
 /* Image preview */
 #imagePreview {
-  max-width: 150px;
-  margin-top: 10px;
+  max-width: 160px;
+  margin-top: 12px;
   border-radius: 10px;
   display: none;
 }

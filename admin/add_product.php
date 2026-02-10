@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php require_once '../includes/navbar.php'; ?>
 
         <main class="admin-content">
-            <div class="admin-page">
+            <div class="admin-page admin-form-page">
                 <h2 class="admin-title">Add New Product</h2>
 
                 <form method="POST" enctype="multipart/form-data" class="admin-form">

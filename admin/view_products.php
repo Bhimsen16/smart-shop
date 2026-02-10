@@ -18,7 +18,7 @@ $result = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
         <?php require_once('../includes/navbar.php'); ?>
 
         <main class="admin-content">
-            <div class="admin-page">
+            <div class="admin-page admin-products">
                 <h2 class="admin-title">Products</h2>
 
                 <table class="admin-table">
