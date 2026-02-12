@@ -13,19 +13,27 @@
 
 .auth-box {
   position: absolute;
-  right: 50px;
-  top: 60px;
-  width: 340px;
-  padding: 20px;
+  right: 64px;
+  top: 38px;
+  width: 420px;
+  padding: 28px;
   background: #fff;
   border: 1px solid #ddd;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-  z-index: 1000;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+  z-index: 2000;
 
   opacity: 0; 
-  transform: translateY(-10px); 
+  transform: translateY(-12px); 
   pointer-events: none;
   transition: all 0.25s ease;
+}
+
+.auth-box label {
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+  color: #111827;
 }
 
 .auth-box form {
@@ -34,15 +42,18 @@
 
 .auth-box input {
   width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
   font-size: 14px;
+  transition: 0.2s;
 }
 
 .auth-box input:focus {
   outline: none;
-  border-color: #222;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
 }
 
 .auth-box button {
@@ -85,4 +96,11 @@
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+}
+
+body.auth-active .homepage-container,
+body.auth-active header,
+body.auth-active footer {
+  filter: blur(2px);
+  transition: 0.4s ease;
 }

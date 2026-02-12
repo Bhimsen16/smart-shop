@@ -21,7 +21,9 @@ if (!$result) {
     <div id="loginForm" style="<?php echo $show_register ? 'display:none;' : ''; ?>">
       <form method="POST" action="../auth/login.php">
 
+        <label>Email</label>
         <input type="email" name="email" placeholder="Email" required>
+        <label>Password</label>
         <input type="password" name="password" placeholder="Password" required>
 
         <?php if ($login_error): ?>
@@ -42,8 +44,11 @@ if (!$result) {
     <div id="registerForm" style="<?php echo $show_register ? '' : 'display:none;'; ?>">
       <form method="POST" action="../auth/register.php">
 
+        <label>Username</label>
         <input type="text" name="username" placeholder="Username" required>
+        <label>Email</label>
         <input type="email" name="email" placeholder="Email" required>
+        <label>Password</label>
         <input type="password" name="password" placeholder="Password" required>
 
         <button type="submit">Register</button>
@@ -62,7 +67,10 @@ if (!$result) {
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const authBox = document.getElementById('authBox');
-      if (authBox) authBox.classList.add('show');
+      if (authBox) {
+        authBox.classList.add('show');
+        document.body.classList.add('auth-active');
+      }
     });
   </script>
 <?php endif; ?>

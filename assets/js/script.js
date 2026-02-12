@@ -184,6 +184,12 @@ function toggleAuthBox() {
   if (!authBox) return;
 
   authBox.classList.toggle("show");
+
+  if (authBox.classList.contains("show")) {
+    document.body.classList.add("auth-active");
+  } else {
+    document.body.classList.remove("auth-active");
+  }
 }
 
 function toggleUserMenu() {
@@ -201,6 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+//CSV Input
 const csvInput = document.getElementById("csvFile");
 const fileName = document.getElementById("fileName");
 
