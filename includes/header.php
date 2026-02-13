@@ -23,6 +23,7 @@
     <!-- Only for admins -->
     <?php if (strpos($_SERVER['REQUEST_URI'], '/admin/') !== false): ?>
         <link rel="stylesheet" href="../assets/css/admin.css">
+        <link rel="stylesheet" href="../assets/css/user_management.css">
     <?php endif; ?>
 
     <!-- Custom JS -->
