@@ -16,6 +16,11 @@ $avatar_letter = $username !== ''
       <img src="../assets/images/logo.png" alt="Smart Shop Logo">
     </a>
 
+    <form action="/SmartShop/user/products.php" method="GET" class="nav-search">
+      <input type="text" name="search" placeholder="Search laptops..." required>
+      <button type="submit">Search</button>
+    </form>
+
     <div class="nav-right">
 
       <!-- Products button -->
@@ -23,7 +28,7 @@ $avatar_letter = $username !== ''
         <i class="fa-solid fa-laptop"></i>
         <span class="nav-text">Laptops</span>
       </a>
-      
+
       <a class="nav-item" href="../user/cart.php">
         <span class="cart-icon-wrap">
           <i class="fa-solid fa-cart-shopping"></i>
