@@ -1,15 +1,4 @@
-// ===== Simple Search + Sorting + Cart =====
-
-// Search bar
-function performSearch() {
-  let query = document.getElementById("searchInput").value.toLowerCase();
-  let cards = document.querySelectorAll(".product-card");
-
-  cards.forEach((card) => {
-    let text = card.innerText.toLowerCase();
-    card.style.display = text.includes(query) ? "block" : "none";
-  });
-}
+// ===== Sorting + Cart =====
 
 // Price sort
 function sortProducts() {
@@ -250,3 +239,4 @@ rightArrow.addEventListener("click", () => {
   let next = (currentIndex + 1) % thumbnails.length;
   updateImage(next);
 });
+

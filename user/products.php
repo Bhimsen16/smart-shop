@@ -3,10 +3,38 @@ require_once '../includes/init.php';
 include('../includes/header.php');
 include('../includes/navbar.php');
 
-// FETCH PRODUCTS
-$query = "SELECT id, product_name, price, image, listing_specs 
-          FROM products 
-          ORDER BY created_at DESC";
+$where = [];
+$order = "ORDER BY created_at DESC";
+
+// SEARCH
+if (isset($_GET['search']) && $_GET['search'] !== '') {
+    $search = $conn->real_escape_string($_GET['search']);
+    $where[] = "(product_name LIKE '%$search%' 
+                OR brand LIKE '%$search%')";
+}
+
+// CATEGORY
+if (isset($_GET['category']) && $_GET['category'] !== '') {
+    $category = $conn->real_escape_string($_GET['category']);
+    $where[] = "category = '$category'";
+}
+
+// SORT
+if (isset($_GET['sort'])) {
+    if ($_GET['sort'] === 'asc') {
+        $order = "ORDER BY price ASC";
+    } elseif ($_GET['sort'] === 'desc') {
+        $order = "ORDER BY price DESC";
+    }
+}
+
+$query = "SELECT * FROM products";
+
+if (!empty($where)) {
+    $query .= " WHERE " . implode(" AND ", $where);
+}
+
+$query .= " $order";
 
 $result = $conn->query($query);
 

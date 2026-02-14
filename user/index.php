@@ -81,15 +81,10 @@ if (!$result) {
       <h1>Find the perfect laptop for your needs</h1>
       <p>Compare specs, choose smart — Smart Shop helps you pick the right laptop easily.</p>
 
-      <div class="search-bar">
-        <input id="searchInput" type="text" placeholder="Search laptops by brand, processor, model...">
-        <button onclick="performSearch()">Search</button>
-      </div>
-
       <div class="hero-buttons">
-        <button class="btn-primary">Browse All</button>
-        <button class="btn-secondary">Gaming Laptops</button>
-        <button class="btn-secondary">Everyday Use</button>
+        <a href="products.php" class="btn-primary">Browse All</a>
+        <a href="products.php?category=gaming" class="btn-secondary">Gaming Laptops</a>
+        <a href="products.php?category=everyday" class="btn-secondary">Everyday Use</a>
       </div>
 
       <div class="trust-badges">
@@ -106,37 +101,45 @@ if (!$result) {
 
   <!-- ===================== CATEGORIES ===================== -->
   <section class="categories-section">
-    <div class="category-card">
-      <img src="https://img.icons8.com/fluency/48/000000/game-controller.png">
-      <div>
-        <h4>Gaming</h4>
-        <p>Performance beasts</p>
+    <a href="products.php?category=gaming" class="category-link">
+      <div class="category-card">
+        <img src="https://img.icons8.com/fluency/48/000000/game-controller.png">
+        <div>
+          <h4>Gaming</h4>
+          <p>Performance beasts</p>
+        </div>
       </div>
-    </div>
+    </a>
 
-    <div class="category-card">
-      <img src="https://img.icons8.com/fluency/48/000000/laptop.png">
-      <div>
-        <h4>Everyday</h4>
-        <p>For students & office</p>
+    <a href="products.php?category=everyday" class="category-link">
+      <div class="category-card">
+        <img src="https://img.icons8.com/fluency/48/000000/laptop.png">
+        <div>
+          <h4>Everyday</h4>
+          <p>For students & office</p>
+        </div>
       </div>
-    </div>
+    </a>
 
-    <div class="category-card">
-      <img src="https://img.icons8.com/fluency/48/000000/wallet.png">
-      <div>
-        <h4>Budget</h4>
-        <p>Value for money</p>
+    <a href="products.php?category=budget" class="category-link">
+      <div class="category-card">
+        <img src="https://img.icons8.com/fluency/48/000000/wallet.png">
+        <div>
+          <h4>Budget</h4>
+          <p>Value for money</p>
+        </div>
       </div>
-    </div>
+    </a>
 
-    <div class="category-card">
-      <img src="https://img.icons8.com/fluency/48/000000/briefcase.png">
-      <div>
-        <h4>Productivity</h4>
-        <p>Work & creation</p>
+    <a href="products.php?category=productivity" class="category-link">
+      <div class="category-card">
+        <img src="https://img.icons8.com/fluency/48/000000/briefcase.png">
+        <div>
+          <h4>Productivity</h4>
+          <p>Work & creation</p>
+        </div>
       </div>
-    </div>
+    </a>
   </section>
 
   <!-- ===================== FEATURED PRODUCTS ===================== -->
