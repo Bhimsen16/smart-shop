@@ -48,8 +48,8 @@ html {
     display:flex;
     justify-content:space-between;
     gap:30px;
-    background:white;
-    padding:40px;
+    background: linear-gradient(135deg, #ffffff, #f1f5ff);
+    padding:42px 40px;
     border-radius:14px;
     box-shadow:0 8px 30px rgba(0,0,0,0.08);
     margin-bottom:40px;
@@ -59,6 +59,9 @@ html {
 /* HERO LEFT */
 .hero-left{
     width:55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hero-left h1{
@@ -72,36 +75,6 @@ html {
     font-size:16px;
     color:#444;
     margin-bottom:20px;
-}
-
-/* SEARCH BAR */
-.search-bar{
-    display:flex;
-    gap:12px;
-    margin-bottom:20px;
-}
-
-.search-bar input{
-    width:100%;
-    padding:14px;
-    border-radius:10px;
-    border:1px solid #ddd;
-    font-size:15px;
-}
-
-.search-bar button{
-    padding:14px 22px;
-    border:none;
-    border-radius:10px;
-    background:#2563eb;
-    color:white;
-    cursor:pointer;
-    font-weight:700;
-    transition:0.2s;
-}
-
-.search-bar button:hover{
-    background:#1e4fcc;
 }
 
 /* HERO BUTTONS */
@@ -142,6 +115,12 @@ html {
     color:white;
 }
 
+.btn-primary,
+.btn-secondary {
+    text-decoration: none;
+    display: inline-block;
+}
+
 /* TRUST BADGES */
 .trust-badges{
     margin-top:12px;
@@ -160,7 +139,7 @@ html {
 }
 
 .hero-right img{
-    width:420px;
+    width:330px;
     border-radius:14px;
     object-fit:cover;
     box-shadow:0 6px 20px rgba(0,0,0,0.1);
@@ -173,10 +152,12 @@ html {
     display:flex;
     gap:18px;
     margin-bottom:36px;
+    flex-wrap: wrap;
 }
 
 .category-card{
-    width:23%;
+    flex: 1;
+    min-width: 220px;
     background:white;
     padding:18px;
     border-radius:14px;
@@ -185,6 +166,13 @@ html {
     gap:12px;
     cursor:pointer;
     transition:0.2s;
+}
+
+.category-icon {
+    font-size: 36px;
+    color: #2563eb;
+    width: 48px;
+    text-align: center;
 }
 
 .category-card:hover{
@@ -200,6 +188,12 @@ html {
     margin-bottom:4px;
     font-size:17px;
     font-weight:700;
+}
+
+.category-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 /* ========================================================

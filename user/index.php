@@ -103,7 +103,7 @@ if (!$result) {
   <section class="categories-section">
     <a href="products.php?category=gaming" class="category-link">
       <div class="category-card">
-        <img src="https://img.icons8.com/fluency/48/000000/game-controller.png">
+        <i class="fa-solid fa-gamepad category-icon"></i>
         <div>
           <h4>Gaming</h4>
           <p>Performance beasts</p>
