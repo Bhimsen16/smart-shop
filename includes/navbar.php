@@ -12,14 +12,16 @@ $avatar_letter = $username !== ''
 
 <nav class="navbar">
   <div class="navbar-container">
-    <a class="logo" href="../user/index.php">
-      <img src="../assets/images/logo.png" alt="Smart Shop Logo">
-    </a>
+    <div class="nav-left">
+      <a class="logo" href="../user/index.php">
+        <img src="../assets/images/logo.png" alt="Smart Shop Logo">
+      </a>
 
-    <form action="/SmartShop/user/products.php" method="GET" class="nav-search">
-      <input type="text" name="search" placeholder="Search laptops..." required>
-      <button type="submit">Search</button>
-    </form>
+      <form action="/SmartShop/user/products.php" method="GET" class="nav-search">
+        <input type="text" name="search" placeholder="Search laptops..." required>
+        <button type="submit">Search</button>
+      </form>
+    </div>
 
     <div class="nav-right">
 

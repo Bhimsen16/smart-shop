@@ -18,6 +18,13 @@
   align-items: center;
 }
 
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* controls how close search is to logo */
+}
+
+
 .logo {
   display: flex;
   align-items: center;
@@ -89,12 +96,12 @@
   border-radius: 8px;
   background: white;
   overflow: hidden;
-  margin: 0 20px;
+  margin: 0;
 }
 
 .nav-search input {
   border: none;
-  padding: 10px 16px;
+  padding: 14px 16px;
   font-size: 14px;
   width: 300px;
   outline: none;
