@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
     $header = fgetcsv($file); // skip header
 
     while (($row = fgetcsv($file)) !== false) {
-      if (count($row) < 24) {
+      if (count($row) < 27) {
         continue; // skip bad row
       }
 
@@ -70,9 +70,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
           VALUES (?, ?, ?, ?, ?)"
       );
 
-      $stmt->bind_param("isss",
+      $stmt->bind_param("issss",
         $product_id,
         $gpu,
+        $gpu_tdp,
         $ram,
         $storage
       );
