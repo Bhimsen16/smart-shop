@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
     $header = fgetcsv($file); // skip header
 
     while (($row = fgetcsv($file)) !== false) {
-      if (count($row) < 27) {
+      if (count($row) < 25) {
         continue; // skip bad row
       }
 
@@ -20,11 +20,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
       [
         $product_name, $brand, $category, $price, $description, $image,
         $cpu, $cores_threads, $clock_speed, $cache,
-        $gpu, $ram, $storage,
+        $gpu, $gpu_tdp, $ram, $storage,
         $display, $resolution, $refresh_rate, $anti_glare,
         $os, $utility, $weight, $warranty,
         $battery, $charger, $connectivity
       ] = $row;
+
+      $check = $conn->prepare("SELECT id FROM products WHERE product_name = ?");
+      $check->bind_param("s", $product_name);
+      $check->execute();
+      $check->store_result();
+
+      if ($check->num_rows > 0) {
+        continue; // skip duplicate
+      }
+      
+      $check->close();
 
       // products insert
       $stmt = $conn->prepare(
