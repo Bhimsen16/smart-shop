@@ -64,13 +64,15 @@ if (!$result) {
 
                 <!-- Listing specs -->
                 <ul class="listing-specs">
-                    <?php
-                    $specs = explode('|', $row['listing_specs']);
-                    $specs = array_slice($specs, 0, 8); // limit to max 8
-                    foreach ($specs as $spec):
+                    <?php if (!empty($row['listing_specs'])):
+                        $specs = explode('|', $row['listing_specs']);
+                        $specs = array_filter($specs); // remove empty values
+                        $specs = array_slice($specs, 0, 8);
                     ?>
-                        <li><?= htmlspecialchars(trim($spec)) ?></li>
-                    <?php endforeach; ?>
+                        <?php foreach ($specs as $spec): ?>
+                            <li><?= htmlspecialchars(trim($spec)) ?></li>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </ul>
 
             </div>
