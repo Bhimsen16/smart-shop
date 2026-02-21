@@ -11,14 +11,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
     $file = fopen($_FILES['csv_file']['tmp_name'], 'r');
     $header = fgetcsv($file); // skip header
 
-    while (($row = fgetcsv($file)) !== false) {
-      if (count($row) < 26) {
+    while (($row = fgetcsv($file, 0, ",", '"')) !== false) { // <-- specify comma + double quote enclosure
+      echo "Columns: " . count($row) . "\n"; // debug
+      if (count($row) < 25) {
         continue; // skip bad row
       }
 
       // destructure row
       [
-        $product_name, $brand, $category, $price, $listing_specs, $description, $image,
+        $product_name, $brand, $category, $price, $listing_specs, $description,
         $cpu, $cores_threads, $clock_speed, $cache,
         $gpu, $gpu_tdp, $ram, $storage,
         $display, $resolution, $refresh_rate, $anti_glare,
@@ -37,21 +38,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
       
       $check->close();
 
-      $listing_specs = trim($listing_specs);
       // products insert
+      $listing_specs = trim(htmlspecialchars_decode($listing_specs)); // decode HTML entities
       $stmt = $conn->prepare(
-        "INSERT INTO products (product_name, brand, category, price, listing_specs, description, image)
-           VALUES (?, ?, ?, ?, ?, ?, ?)"
+        "INSERT INTO products (product_name, brand, category, price, listing_specs, description)
+           VALUES (?, ?, ?, ?, ?, ?)"
       );
 
-      $stmt->bind_param("sssisss",
+      $stmt->bind_param("sssiss",
         $product_name,
         $brand,
         $category,
         $price,
         $listing_specs,
-        $description,
-        $image
+        $description
       );
 
       $stmt->execute();

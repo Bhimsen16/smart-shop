@@ -248,7 +248,7 @@ if (empty($images) && !empty($product['image'])) {
                                     </tr>
                                     <tr>
                                         <td>Connectivity</td>
-                                        <td><?= htmlspecialchars(implode(', ', preg_split('/\s{2,}|\s(?=[A-Z])/u', $power['connectivity']))) ?></td>
+                                        <td><?= htmlspecialchars(implode(', ', explode('|', $power['connectivity']))) ?></td>
                                     </tr>
                                 </table>
                             <?php endif; ?>
