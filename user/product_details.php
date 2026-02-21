@@ -264,3 +264,4 @@ if (empty($images) && !empty($product['image'])) {
 </main>
 
 <?php include('../includes/footer.php'); ?>
+<script src="../assets/js/product_details.js"></script>

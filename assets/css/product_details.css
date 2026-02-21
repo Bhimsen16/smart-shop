@@ -30,12 +30,7 @@
 .product-detail-container .main-image-wrapper img {
   max-height: 100%;
   width: auto;
-}
-
-.product-detail-container .product-image img {
-  width: 100%;
   max-width: 450px;
-  min-width: 300px;
   border-radius: 14px;
   object-fit: contain;
   transition: transform 0.3s ease;

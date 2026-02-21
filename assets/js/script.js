@@ -205,38 +205,3 @@ csvInput.addEventListener("change", () => {
     ? csvInput.files[0].name
     : "No file selected";
 });
-
-//Product Images
-const thumbnails = document.querySelectorAll(".thumb");
-const mainImage = document.getElementById("mainImage");
-const leftArrow = document.querySelector(".img-arrow.left");
-const rightArrow = document.querySelector(".img-arrow.right");
-
-let currentIndex = 0;
-
-function updateImage(index) {
-  currentIndex = index;
-  mainImage.src = thumbnails[index].src;
-
-  thumbnails.forEach((t) => t.classList.remove("active"));
-  thumbnails[index].classList.add("active");
-}
-
-// thumbnail click
-thumbnails.forEach((thumb) => {
-  thumb.addEventListener("click", () => {
-    updateImage(parseInt(thumb.dataset.index));
-  });
-});
-
-// arrows
-leftArrow.addEventListener("click", () => {
-  let next = (currentIndex - 1 + thumbnails.length) % thumbnails.length;
-  updateImage(next);
-});
-
-rightArrow.addEventListener("click", () => {
-  let next = (currentIndex + 1) % thumbnails.length;
-  updateImage(next);
-});
-
