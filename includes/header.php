@@ -1,3 +1,52 @@
+<!-- Auth Dropdown -->
+<div class="auth-wrapper">
+  <div class="auth-box" id="authBox">
+    <!-- Login Form -->
+    <div id="loginForm" style="<?php echo $show_register ? 'display:none;' : ''; ?>">
+      <form method="POST" action="../auth/login.php">
+
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Email" required>
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <?php if ($login_error): ?>
+          <p class="error">Invalid email or password</p>
+        <?php endif; ?>
+
+        <button type="submit">Login</button>
+
+        <p class="switch">
+          Don’t have an account?
+          <a href="#" onclick="showRegister(); return false;">Register</a>
+        </p>
+
+      </form>
+    </div>
+
+    <!-- Register Form -->
+    <div id="registerForm" style="<?php echo $show_register ? '' : 'display:none;'; ?>">
+      <form method="POST" action="../auth/register.php">
+
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Username" required>
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Email" required>
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <button type="submit">Register</button>
+
+        <p class="switch">
+          Already have an account?
+          <a href="#" onclick="showLogin(); return false;">Login</a>
+        </p>
+
+      </form>
+    </div>
+  </div>
+</div>
+
 <!DOCTYPE html>
 <html lang="en">
 
