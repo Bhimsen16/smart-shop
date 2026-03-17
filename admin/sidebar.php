@@ -26,6 +26,10 @@
       <i class="fa-solid fa-users"></i><span>Users</span>
     </a>
 
+    <a href="orders.php" class="<?= $currentPage == 'orders.php' ? 'active' : '' ?>">
+      <i class="fa-solid fa-cart-shopping"></i><span>Orders</span>
+    </a>
+
     <a href="../auth/logout.php">
       <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
     </a>
