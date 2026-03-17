@@ -77,9 +77,12 @@ if (!$cart_empty) {
                     <span id="cart-total">Rs. <?php echo number_format($total); ?></span>
                 </p>
 
-                <a href="checkout.php" class="checkout-btn">Proceed to Checkout</a>
+                <?php if (!isset($_SESSION['user_id'])): ?>
+                    <a href="checkout.php" class="checkout-btn">Proceed to Checkout</a>
+                <?php else: ?>
+                    <a href="checkout.php" class="checkout-btn">Proceed to Checkout</a>
+                <?php endif; ?>
             </div>
-
         </div>
     </div>
 </main>

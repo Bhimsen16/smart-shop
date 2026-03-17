@@ -68,6 +68,7 @@
     <link rel="stylesheet" href="../assets/css/cart.css">
     <link rel="stylesheet" href="../assets/css/auth.css">
     <link rel="stylesheet" href="../assets/css/includes.css">
+    <link rel="stylesheet" href="../assets/css/user.css">
 
     <!-- Only for admins -->
     <?php if (strpos($_SERVER['REQUEST_URI'], '/admin/') !== false): ?>
