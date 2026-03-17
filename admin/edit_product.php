@@ -83,7 +83,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
             </div>
         </main>
-        
-        <?php require_once '../includes/footer.php'; ?>
     </div>
 </div>
