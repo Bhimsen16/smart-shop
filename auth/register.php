@@ -9,12 +9,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     // Basic validations
+    // Username
     if (strlen($username) < 3) {
         die("Username must be at least 3 characters");
     }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        die("Invalid email address");
+    if (!preg_match('/^[a-zA-Z](?=(?:.*[a-zA-Z]){2,})[a-zA-Z0-9_]*$/', $username)) {
+        die("Username must start with a letter and contain at least 3 letters");
+    }
+
+    // Email
+    if (
+        !filter_var($email, FILTER_VALIDATE_EMAIL) ||
+        !preg_match('/\.[a-zA-Z]{2,}$/', $email)
+    ) {
+        header("Location: ../user/index.php?register_error=email");
+        exit;
+    }
+
+    // Password
+    if (strlen($password) < 6) {
+        die("Password must be at least 6 characters");
     }
 
     if (strlen($password) < 6) {
@@ -48,4 +63,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Registration failed");
     }
 }
-?>
